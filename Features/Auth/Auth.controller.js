@@ -31,11 +31,11 @@ app.post("/signup", async (req, res)=>{
     try{
         let isEmailPresent = await users.findOne({email});
         if(isEmailPresent){
-            return res.status(401).send("Email Id already exists");
+            return res.status(401).send({stat:false, message:"Email Id already exists"});
         }
 
         let newUser = await users.create({email, name, password});
-        res.send({token : `${newUser.id}:${newUser.email}:${newUser.password}`});
+        res.send({stat: true, token : `${newUser.id}:${newUser.email}:${newUser.password}`});
     }catch(e){
         res.status(500).send(e.message);
     }
