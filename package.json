@@ -1,0 +1,25 @@
+{
+  "name": "emicalculator_backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lokesh-dc/EmiCalculator_Backend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lokesh-dc/EmiCalculator_Backend/issues"
+  },
+  "homepage": "https://github.com/lokesh-dc/EmiCalculator_Backend#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongoose": "^6.8.0",
+    "nodemon": "^2.0.20"
+  }
+}
