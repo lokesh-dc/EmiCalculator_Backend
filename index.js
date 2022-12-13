@@ -10,8 +10,7 @@ app.use(cors());
 app.use("/auth", authController)
 
 
-app.get("/calculateemi", async(req,res)=>{
-    
+app.post("/calculateemi", async(req,res)=>{
     const {amount, interest, tenure} = req.body;
     try{
         const r = ( interest / 12 ) / 100;
