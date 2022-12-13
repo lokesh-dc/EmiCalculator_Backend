@@ -2,11 +2,11 @@ const express = require("express");
 
 const databaseConnect = require("./Config/dbConnect")
 const authController = require("./Features/Auth/Auth.controller");
+const cors = require("cors")
 
 const app = express();
-
 app.use(express.json());
-
+app.use(cors());
 app.use("/auth", authController)
 
 

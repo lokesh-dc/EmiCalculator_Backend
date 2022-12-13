@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js"
- },
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/lokesh-dc/EmiCalculator_Backend.git"
@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/lokesh-dc/EmiCalculator_Backend#readme",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.18.2",
     "mongoose": "^6.8.0",
     "nodemon": "^2.0.20"
