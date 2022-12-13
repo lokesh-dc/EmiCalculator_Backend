@@ -47,10 +47,10 @@ app.post("/login", async (req, res)=>{
     try{
         let findUser = await users.findOne({email, password});
         if(!findUser){
-            return res.status(404).send("Bad Credentials");
+            return res.status(404).send({stat: false,message: "Bad Credentials"});
         }
 
-        res.send({token : `${findUser.id}:${findUser.email}:${findUser.password}`});
+        res.send({stat: true,token : `${findUser.id}:${findUser.email}:${findUser.password}`});
     }catch(e){
         res.status(500).send(e.message);
     }
