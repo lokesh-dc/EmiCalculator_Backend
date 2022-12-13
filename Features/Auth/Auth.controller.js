@@ -8,6 +8,53 @@ app.get("/", async (req, res)=>{
     res.send(u);
 })
 
+app.get("/profile", async(req,res)=>{
+    let {token} = req.headers;
+    try{
+        if(token){
+            const [id,email,password] = token.split(":");
+            let checkCreds = await users.findById(id)
+            if(checkCreds.email===email && checkCreds.password===password){
+                return res.send(checkCreds);
+            }
+    
+            return res.status(404).send("Bad Credentials");
+        }
+    }catch(e){
+        res.status(500).send(e.message);
+    }
+})
+
+app.post("/signup", async (req, res)=>{
+
+    const {email, name, password} = req.body;
+    try{
+        let isEmailPresent = await users.findOne({email});
+        if(isEmailPresent){
+            return res.status(401).send("Email Id already exists");
+        }
+
+        let newUser = await users.create({email, name, password});
+        res.send({token : `${newUser.id}:${newUser.email}:${newUser.password}`});
+    }catch(e){
+        res.status(500).send(e.message);
+    }
+})
+
+
+app.post("/login", async (req, res)=>{
+    const {email, password } = req.body;
+    try{
+        let findUser = await users.findOne({email, password});
+        if(!findUser){
+            return res.status(404).send("Bad Credentials");
+        }
+
+        res.send({token : `${findUser.id}:${findUser.email}:${findUser.password}`});
+    }catch(e){
+        res.status(500).send(e.message);
+    }
+})
 
 
 module.exports = app;
