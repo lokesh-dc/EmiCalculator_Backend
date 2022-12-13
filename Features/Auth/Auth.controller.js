@@ -15,10 +15,10 @@ app.get("/profile", async(req,res)=>{
             const [id,email,password] = token.split(":");
             let checkCreds = await users.findById(id)
             if(checkCreds.email===email && checkCreds.password===password){
-                return res.send(checkCreds);
+                return res.send({stat: true,creds: checkCreds});
             }
     
-            return res.status(404).send("Bad Credentials");
+            return res.status(404).send({stat: false, message:"Bad Credentials"});
         }
     }catch(e){
         res.status(500).send(e.message);
